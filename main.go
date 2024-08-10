@@ -216,7 +216,14 @@ func main() {
 		Short: "Shell into the liteargs state database",
 		Args:  cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			err := shell.RunShell(shell.ShellConfig{DbUri: args[0], InF: os.Stdin, OutF: os.Stdout, ErrF: os.Stderr})
+			emptyWelcome := ""
+			err := shell.RunShell(shell.ShellConfig{
+				DbUri:          args[0],
+				InF:            os.Stdin,
+				OutF:           os.Stdout,
+				ErrF:           os.Stderr,
+				WelcomeMessage: &emptyWelcome,
+			})
 			if err != nil {
 				fatalLog("failed to exit shell: %v", err)
 			}

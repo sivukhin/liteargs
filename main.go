@@ -128,7 +128,7 @@ func run(ctx context.Context, shell string, command string) (bool, string, strin
 	select {
 	case err = <-waitCh:
 		if err == nil {
-			okLog("command succeed: %v, elapsed=%v", command, time.Since(startTime))
+			okLog("command succeed: %v, elapsed=%v, stdout=%v", command, time.Since(startTime), stdout.String())
 			return true, stdout.String(), stderr.String()
 		}
 		errorLog("command failed: %v, err=%v", command, err)
